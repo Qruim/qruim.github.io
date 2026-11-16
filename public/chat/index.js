@@ -1,7 +1,15 @@
+function stringToColor(str) {
+    if (str === sessionStorage.userName) {
+        return "#99acff";
+    }
+    return "#ade82a";
+}
+
 const socket = new WebSocket("ws://localhost:3001");
 
 socket.onopen = () => {
     const name = sessionStorage.userName;
+
     const content = "Just join the chat!";
     socket.send(JSON.stringify({ name, content }));
 };
@@ -17,6 +25,12 @@ socket.onmessage = (event) => {
 
     const messageEl = document.createElement("div");
     messageEl.className = "message_body";
+    console.log(stringToColor(name));
+
+    if (sessionStorage.userName === name) {
+        messageEl.style.alignSelf = "end";
+    }
+    messageEl.style.backgroundColor = stringToColor(name);
     messageEl.innerHTML = `
         <p class="message__user_name">${name}</p>
         <p class="message__text">${content}</p>
@@ -33,6 +47,10 @@ const userNameOutput = document.getElementById("userName");
 const userInfoSettings = document.getElementById("userInfoSettings");
 
 if (sessionStorage["userName"]) {
+    userNameOutput.innerText = `, ${sessionStorage["userName"]}`;
+    document.title = sessionStorage["userName"];
+} else {
+    sessionStorage["userName"] = "anonymous" + Math.floor(new Date().getTime() * Math.random(0, 1));
     userNameOutput.innerText = `, ${sessionStorage["userName"]}`;
     document.title = sessionStorage["userName"];
 }
@@ -52,6 +70,8 @@ const messageForm = document.getElementById("messageForm");
 
 messageForm.addEventListener("submit", (ev) => {
     ev.preventDefault();
+    if (!ev.target.messageInput.value.length) return;
+
     const data = JSON.stringify({ name: sessionStorage.userName, content: ev.target.messageInput.value });
     socket.send(data);
 });
