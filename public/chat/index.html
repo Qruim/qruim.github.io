@@ -1,1 +1,31 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <h1>Welcome to the my Websocket chat<span id="userName"></span>!</h1>
 
+        <form id="userInfoSettings">
+            <input type="text" id="userNameInput" placeholder="Your name" />
+            <button type="submit">CONFIRM</button>
+        </form>
+
+        <div class="chatWrapper">
+            <div id="chatArea" class="chatArea"></div>
+
+            <form id="messageForm">
+                <textarea name="messageInput" id="messageInput"></textarea>
+                <button type="submit">Send message</button>
+            </form>
+        </div>
+        <!-- <ul id="availibleRooms"></ul>
+        <button id="createRoom">Create Room</button> -->
+
+        <script src="index.js" type="module"></script>
+    </body>
+</html>

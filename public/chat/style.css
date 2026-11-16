@@ -1,0 +1,33 @@
+body {
+    min-height: 100vh;
+}
+
+.chatWrapper {
+    max-width: 920px;
+    margin: 0 auto;
+    border: 1px solid;
+}
+.chatArea {
+    min-height: 50vh;
+    padding: 1rem 0;
+}
+.message__user_name {
+    margin: 0;
+    font-weight: 600;
+}
+.message__text {
+    margin: 0;
+}
+
+.message_body {
+    background: #afa;
+    padding: 0.5rem;
+}
+#messageForm {
+    display: flex;
+    padding: 1rem;
+}
+#messageInput {
+    flex: 70%;
+    min-height: 3em;
+}
